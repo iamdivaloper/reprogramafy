@@ -1,0 +1,282 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: white;
+  font-family: sans-serif;
+  height: 100%;
+  background: url('bg.jpg') no-repeat;
+  background-attachment: fixed; /*deixa o fundo/imagem fixa*/
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #7f469a;
+  box-shadow: 0px -1px 8px 0px #444;
+}
+
+nav > button {
+  background: #fff;
+  border: none;
+  padding: 10px 20px;
+  color: #7f479a;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 1px 1px 5px 0px #444;
+  transition: background .3s cubic-bezier(0.19, 1, 0.22, 1), color .5s ease-out;
+}
+
+nav > button:hover {
+  cursor: pointer;
+  background: #7f479a;
+  color: #fff;
+}
+
+main {
+  flex: 1 1 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+
+#modal, #modalCadastro {
+  background: white;
+  padding: 15px;
+  text-align: center;
+  width: 230px;
+  position: relative;
+  margin: auto;
+  height: 230px;
+  /*top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0); essa função deixa o modal bem no meio; é uma transformação de elementos, como girar, distorcer, etc (usa mais para animação); o translate3d centraliza de acordo com a ponta do modal; "centraliza elemento absoluto"*/
+}
+
+#modal > img, #modalCadastro > img  {
+  width: 120px;
+}
+
+#modal.visivel, #modalCadastro.visivel  {
+  display: block;
+}
+
+.box-usuario {
+  border: 2px dotted rebeccapurple;
+  border-radius: 5px;
+}
+
+.box-email{
+  border: 2px dotted rebeccapurple;
+  border-radius: 5px;
+}
+
+.box-senha{
+  border: 2px dotted rebeccapurple;
+  border-radius: 5px;
+}
+
+#fundo , #fundoCadastro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .4);
+  display: none;
+}
+
+#fundo.visivel, #fundoCadastro.visivel {
+  /*display: block;*/
+  display: flex;
+}
+
+#fechar, #fecharCadastro {
+  color: dimgrey;
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#fechar:hover, #fecharCadastro:hover  {
+  cursor: pointer;
+}
+
+.img {
+  margin-bottom: 15px;
+}
+
+input {
+  padding-left: 8px;
+  margin-bottom: 15px;
+}
+
+.logar {
+  margin-left: 125px;
+  background-color: rebeccapurple;
+  color: white;
+  border-radius: 2px;
+  border-color: rebeccapurple;
+}
+
+.cadastrar {
+  margin-left: 100px;
+  background-color: rebeccapurple;
+  color: white;
+  border-radius: 2px;
+  border-color: rebeccapurple;
+}
+
+/* para tornar a borda vermelha após erro na digitação do email */
+.erro {
+  border: 5px solid darkred;
+  animation: shake 0.2s;  /*qual a animação do keyframes, tempo e repetição */
+}
+
+/* o keyframes deixa animado */
+@keyframes shake {
+  0% {
+    transform: none;
+  }
+  33% {
+    transform: translateX(-5px);
+  }
+  66% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+#player {
+  background: rgba(0, 0, 0, .6);
+  display: flex;
+  text-align: center;
+}
+
+.player-tempo {
+  display: flex;
+  align-items: center;
+}
+
+.player-tempo span{
+  margin: 0 8px;
+}
+
+.player-barra {
+  flex-grow: 1;
+  background: #777;
+  height: 5px;
+}
+
+.musica {
+  flex-grow: 1;
+}
+
+.tocado {
+  background: white;
+  /*width: 40%;*/
+  height: 5px;
+}
+
+.botao-play {
+  background: none;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.slider {
+  width: 100%;
+  position: relative;
+}
+
+.slider > ul {
+  list-style-type: none;
+  width: inherit; /*inherit = vai pegar o tamanho do elemento em cima dele */
+  padding: 0;
+  margin: 0;
+}
+
+.slider > ul > li {
+  width: inherit;
+}
+
+.slider > ul > li > img {
+  width: inherit;
+}
+
+.slider > .controles {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+
+#anterior {
+  left: 0;
+  position: absolute;
+}
+
+#proximo {
+  right: 0;
+  position: absolute;
+}
+
+.slider-item {
+  display: none;
+}
+
+.slider-item.active {
+  display: block;
+}
+
+#playlist {
+  padding: 40px;
+}
+
+#playlist ul {
+  padding: 0;
+}
+
+#playlist li {
+  list-style: none;
+  padding: 12px;
+  transition: 0.2s;
+}
+
+/* 
+par = even (pega os filhos números pares)
+ímpar - odd (pega os filhos números ímpares)
+*/
+
+#playlist li:nth-child(odd) {  /*() indica um elemento(filho)*/
+  background: rgba(0,0,0,.5);
+}
+
+#playlist h3 {  
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+#playlist li.active {
+  transform: scale(1.05);
+  box-shadow: 2px 2px 2px rgba(0,0,0,.2); 
+}
